@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -64,7 +65,7 @@ func(e *SecurumExire) CheckIfLeak(endpoint string, b io.Reader) (bool, error) {
 	if e.config.Url == "" {
 		return false, errors.New("error: plugin not configured properly")
 	}
-	urlEndpoint, err := url.Parse(fmt.Sprintf("http://%s:8080/check_endpoint", e.config.Url))
+	urlEndpoint, err := url.Parse(fmt.Sprintf("http://%s/check", e.config.Url))
 	if e.config.Url == "" {
 		return false, errors.New("error: plugin not configured properly")
 	}
@@ -91,6 +92,7 @@ func(e *SecurumExire) CheckIfLeak(endpoint string, b io.Reader) (bool, error) {
 func (e *SecurumExire) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	isBlocked, err := e.CheckIfBlocked(req.URL.Path)
 	if err != nil {
+		log.Println(err)
 		e.next.ServeHTTP(rw, req)
 		return
 	}
@@ -131,7 +133,7 @@ func (e *SecurumExire) CheckIfBlocked(endpoint string) (bool, error) {
 	if e.config.Url == "" {
 		return false, errors.New("error: plugin not configured properly")
 	}
-	urlEndpoint, _ := url.Parse(fmt.Sprintf("http://%s:8080/check_endpoint", e.config.Url))
+	urlEndpoint, _ := url.Parse(fmt.Sprintf("http://%s/check_endpoint", e.config.Url))
 	var req = &http.Request{
 		URL: urlEndpoint,
 		Header: map[string][]string{
