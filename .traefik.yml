@@ -7,5 +7,4 @@ import: github.com/mayankkumar2/traefik-plugin-securum-exire
 summary: Plugin for securum exire
 
 testData:
-  Headers:
-    Foo: Bar
+  url: ""
