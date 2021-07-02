@@ -33,7 +33,7 @@ CLI:
 --experimental.plugins.traefik-plugin-securum-exire.version=0.1.5
 ```  
 ## Dynamic configuration
-(change the url with the configured leak server url)
+(change the url with the configured leak server url)<br>
 YAML:
 ```
 http:
