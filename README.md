@@ -16,7 +16,7 @@ experimental:
     plugins:
         traefik-plugin-securum-exire:
             moduleName: "github.com/mayankkumar2/traefik-plugin-securum-exire"
-            version: "0.1.5"
+            version: "v1.0.1"
 ```     
 TOML:
 ```
@@ -24,13 +24,13 @@ TOML:
   token = "xxxx"
 [experimental.plugins.traefik-plugin-securum-exire]
   moduleName = "github.com/mayankkumar2/traefik-plugin-securum-exire"
-  version = "0.1.5"
+  version = "v1.0.1"
 ```
 CLI:
 ```
 --pilot.token=xxxx
 --experimental.plugins.traefik-plugin-securum-exire.modulename=github.com/mayankkumar2/traefik-plugin-securum-exire
---experimental.plugins.traefik-plugin-securum-exire.version=0.1.5
+--experimental.plugins.traefik-plugin-securum-exire.version=v1.0.1
 ```  
 ## Dynamic configuration
 (change the url with the configured leak server url)<br>
